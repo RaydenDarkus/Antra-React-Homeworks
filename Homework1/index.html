@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antra Homework 1</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="form-container">
+        <form action="submit" method="post" onsubmit=" return validate()">
+            <div class="row">
+                <h1 class="text-center">Sign Up</h1>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
+                </div>
+                <div class="col-6">
+                    <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <input type="text" id="mobile" name="mobile" placeholder="Mobile No:" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <input type="email" id="email" name="email" placeholder="Email Address" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                </div>
+                <div class="col-6">
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">                
+                    <input type="checkbox" id="agree" name="agreement" value="agree" required>
+                    <label for="agree" class="agree"> I Agree</label>
+                </div>
+                <div class="col-9">
+                    <p class="form-text">By clicking <span class="register">Register</span>, you agree to the <a class = "terms-link" href="./terms.html">Terms and Conditions</a> set out by this site, including our cookie use.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <button class="btn-primary" type="submit">Register</button>
+                </div>
+                <div class="col-6">
+                    <button class="btn-success" type="button" onclick="redirectToLogin()">Sign In</button>
+                </div>                
+            </div> 
+        </form>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>
