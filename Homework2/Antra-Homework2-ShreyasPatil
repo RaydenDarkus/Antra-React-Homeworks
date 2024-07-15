@@ -1,0 +1,89 @@
+Why are closures useful in JavaScript? Give an example use case.
+Closures are useful in JavaScript to define private variables that are only accessible within the scope of a function. This can help prevent confusion if the variable name is reused later. It also helps in code reusability. 
+
+var addition = (firstNumber, secondNumber) => {
+	let sum = firstNumber + secondNumber
+	return sum;
+};
+
+let firstNumber = 4;
+let secondNumber = 5;
+console.log(addition(firstNumber, secondNumber)); //9 
+The variable sum can only be accessed inside the scope.
+
+When should you choose to use “let” or “const”?
+“Let” and “const” are both block-scoped whose accessibility is only within the block in which they are defined. However, const cannot be reassigned to a new value. However, the value of const can still change if it is an object or an array.
+
+Give an example of a common mistake related to hoisting and explain how to fix it.
+	Let’s consider this code sample: 
+
+function example() {
+  var funcs = [];
+  for (var i = 0; i < 3; i++) {
+    funcs.push(function() {
+      console.log(i);
+    });
+  }
+  for (var j = 0; j < 3; j++) {
+    funcs[j](); // All will log 3
+  }
+}
+example();
+
+We might think that the output is 
+0
+1
+2
+But the output is 
+3
+3
+3
+This happens because var while used in a loop is also hoisted to function scope. By the time the functions in funcs are called, the loop has completed, and i is 3. However, using “let” instead of “var” in the loop will result in:
+
+0
+1
+2
+
+So, we should not use var for loop iteration variables.
+
+
+4) const arr = [1, 2];
+function foo1(arg) {
+  arg.push(3);
+}
+foo1(arr);
+console.log(arr);
+
+function foo2(arg) {
+  arg = [1, 2, 3, 4];
+}
+foo2(arr);
+console.log(arr);
+
+function foo3(arg) {
+  let b = arg;
+  b.push(3);
+}
+foo3(arr);
+console.log(arr);
+
+function foo4(arg) {
+  let b = arg;
+  b = [1, 2, 3, 4];
+}
+foo4(arr);
+console.log(arr);
+
+Output: 
+[ 1, 2, 3 ]
+[ 1, 2, 3 ]
+[ 1, 2, 3, 3 ]
+[ 1, 2, 3, 3 ]
+
+The output for foo1() will be [1, 2, 3] due to the pushing 3 to the array using pass-by-reference. arg refers to arr here.
+
+The output for foo2() will still be [1, 2, 3] as arg is a local variable. If we reassign a local variable, it does not affect the value of the global variable arr over here.
+
+The output for foo3() will be [1, 2, 3, 3] as b refers to arg which in turn refers to arr. 3 is pushed to arr.
+
+The output for foo4() will be [1, 2, 3, 3] as b refers to arg but it is assigned a new value. It does not affect the value of arr outside foo4().
