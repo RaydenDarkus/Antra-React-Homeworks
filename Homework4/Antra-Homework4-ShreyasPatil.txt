@@ -1,0 +1,74 @@
+1. What is the difference between static and instance methods?
+
+Instance methods are called on the instances of the class. We create an object to access instance methods.
+Static methods are defined on the class itself. It is directly accessed using the class name and function name. 
+eg: class Person {
+  constructor(name) {
+    this.name = name;
+  }
+
+  // Instance method
+  greet() {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+
+  // Static method
+  static species() {
+    console.log('Homo sapiens');
+  }
+}
+
+const person1 = new Person('Alice');
+// Calling the instance method
+person1.greet(); // Output: Hello, my name is Alice
+// Calling the static method
+Person.species(); // Output: Homo sapiens
+
+2. How does JavaScript handle concurrency?
+
+We can handle concurrency in JavaScript by using the event loop model. JavaScript runs on a single thread, it can do only 1 thing at a time.
+Using call stack, JavaScript tracks function calls by pushing it to the stack and popping it while returning. The message queue holds messages
+to be processed. The even loop checks the call stack and the message queue. If the call stack is empty, then it takes the first event from the queue
+and pushes it to the call stack for execution. Web APIs and microtasks are used to handle asynchronus code and promises.
+
+3. What is async/await? How does it differ from using the promise instance methods?
+
+async/await keywords is used to handle asynchronus operations and it makes the code more readable and prevents using then(), catch() and finally() 
+too many times preventing callback hell.
+
+async function fetchData() {
+  try {
+    const response = await fetch('https://api.example.com/data');
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+}
+fetchData();
+
+Promise 
+function fetchData() {
+  fetch('https://api.example.com/data')
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+}
+fetchData();
+
+In promise instance methods, async/await makes the code look more like synchronous code, which can be easier to read and understand. 
+With promises, you handle errors using .catch(), which can sometimes be less straightforward.
+
+4. Can you use await outside of an async function?
+
+No, we cannot use await outside of an async function in JavaScript. "await" keyword is only used in async functions to wait for response.
+Using it outside the function results in a syntax error.
+
+5. What is callback hell and why is it considered a problem?
+
+Callback hell happends when callback functions are nested within other callbacks and so on. This makes the code hard to read and maintain.
+It can also result in several errors and infinite loops. This is hard to diagnose and correct. We use promises to prevent callback hell.
